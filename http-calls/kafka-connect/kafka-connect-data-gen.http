@@ -1,0 +1,110 @@
+# ######################################################################################################################
+#                                                                                                                      #
+# Kafka connect documentation: https://docs.confluent.io/platform/current/connect/references/restapi.html#tasks        #
+# https://docs.confluent.io/kafka-connectors/datagen/current/index.html#configure-the-datagen-source-connector         #
+# ######################################################################################################################
+
+### Start generating random Stock Quotes
+
+POST http://localhost:8083/connectors
+Content-Type: application/json
+
+{
+  "name": "datagen-stock-quotes",
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "kafka.topic": "stock-quotes",
+    "value.converter.schemas.enable": "true",
+    "schema.filename": "/kafka-connect/datagen/avro/StockQuote.avsc",
+    "schema.keyfield": "symbol",
+    "max.interval": 10,
+    "iterations": -1,
+    "tasks.max": 1
+  }
+}
+
+### Increase the number of tasks
+
+PUT http://localhost:8083/connectors/datagen-stock-quotes/config
+Content-Type: application/json
+
+{
+  "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+  "kafka.topic": "stock-quotes",
+  "value.converter.schemas.enable": "true",
+  "schema.filename": "/kafka-connect/datagen/avro/StockQuote.avsc",
+  "schema.keyfield": "symbol",
+  "max.interval": 10,
+  "iterations": -1,
+  "tasks.max": 3
+}
+
+
+### Kafka connect Quickstart credit cards: QuickStart: https://github.com/confluentinc/kafka-connect-datagen/blob/master/src/main/resources/credit_cards.avro
+
+POST http://localhost:8083/connectors
+Content-Type: application/json
+
+{
+  "name": "datagen-credit-cards",
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "kafka.topic": "credit-cards",
+    "quickstart": "credit_cards",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "max.interval": 1000,
+    "tasks.max": "1"
+  }
+}
+
+### Show available connector plugins
+
+GET http://localhost:8083/connector-plugins/
+
+### Show the connectors instances
+
+GET http://localhost:8083/connectors/
+
+### Show status
+
+GET http://localhost:8083/connectors/datagen-stock-quotes/status
+
+###
+
+GET http://localhost:8083/connectors?expand=info&expand=status
+
+###
+
+GET http://localhost:28083/connectors/datagen-stock-quotes2/status
+
+### Stop
+
+POST http://localhost:8083/connectors/datagen-stock-quotes/restart
+
+### Pause
+
+PUT http://localhost:8083/connectors/datagen-stock-quotes/pause
+
+### Resume
+
+PUT http://localhost:8083/connectors/datagen-stock-quotes/resume
+
+### Show the tasks
+
+GET http://localhost:8083/connectors/datagen-stock-quotes/tasks
+
+### Show the configuration
+
+GET http://localhost:8083/connectors/datagen-stock-quotes/config
+
+### Show the topics related to the connector
+
+GET http://localhost:8083/connectors/datagen-stock-quotes/topics
+
+### Delete the connector
+
+DELETE http://localhost:8083/connectors/datagen-stock-quotes/
+
+

@@ -1,0 +1,76 @@
+{
+  "namespace": "nl.jtim.spring.kafka.avro.stock.quote",
+  "type": "record",
+  "name": "StockQuote",
+  "version": 1,
+  "doc": "Avro schema for our stock quote.",
+  "fields": [
+    {
+      "name": "symbol",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "options": [ "AAPL", "MSFT", "GOOG", "TSLA"]
+        }
+      },
+      "doc": "The identifier of the stock."
+    },
+    {
+      "name": "exchange",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "options": [ "NDAQ"]
+        }
+      },
+      "doc": "The stock exchange the stock was traded."
+    },
+    {
+      "name": "tradeValue",
+      "type": {
+        "type": "int",
+        "arg.properties": {
+          "range": {
+            "min": 1,
+            "max": 5000
+          }
+        }
+      },
+      "doc": "The value the stock was traded for."
+    },
+    {
+      "name": "currency",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "options": [ "USD"]
+        }
+      },
+      "doc": "The currency the stock was traded in."
+    },
+    {
+      "name": "description",
+      "doc": "Description about the stock.",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "options": [ "Description", "Some Description", "Other Description" ]
+        }
+      }
+    },
+    {
+      "name": "tradeTime",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis",
+        "arg.properties": {
+          "iteration": {
+            "start": 1670427647,
+            "step": 1
+          }
+        }
+      },
+      "doc": "Epoch millis timestamp at which the stock trade took place."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+
+  kafka-console-producer:
+    image: confluentinc/cp-kafka:${CONFLUENT_PLATFORM_VERSION}
+    container_name: kafka-console-producer
+    command: sleep infinity
+
+  kafka-console-consumer:
+    image: confluentinc/cp-kafka:${CONFLUENT_PLATFORM_VERSION}
+    container_name: kafka-console-consumer
+    command: sleep infinity
