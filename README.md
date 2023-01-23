@@ -25,7 +25,7 @@ Conduktor Proxy: [docker-compose-conduktor-proxy.yml](docker-compose-conduktor-p
 |--------------------------|-------------------|----------------------------------------------|---------------------------------|---------------|
 | Conduktor Proxy          | 8888, 6969 - 6970 | [Conduktor Proxy API](http://localhost:8888) | Proxy in front of Kafka cluster |               |
 
-Kafka console producer / consumer [doc](docker-compose-console-consumer-producer.yml)
+Kafka console producer / consumer [docker-compose-console-consumer-producer.yml](docker-compose-console-consumer-producer.yml)
 
 
 | Component                             | Port | Description | Documentation |

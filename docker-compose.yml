@@ -64,7 +64,7 @@ services:
       TZ: $TZ
 
   conduktor:
-    image: conduktor/conduktor-platform:1.7.2
+    image: conduktor/conduktor-platform:1.8.0
     hostname: conduktor
     container_name: conduktor
     healthcheck:
