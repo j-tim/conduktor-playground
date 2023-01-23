@@ -63,7 +63,7 @@ services:
     volumes:
       - ./connectors/confluentinc-kafka-connect-datagen-0.6.0:/usr/share/java/confluentinc-kafka-connect-datagen
       - ./connectors/kafka-connect-transforms:/usr/share/java/kafka-connect-transforms
-      - ./avro/StockQuote.avsc:/kafka-connect/datagen/avro/StockQuote.avsc
+      - ./avro-model/src/main/resources/avro/StockQuote.avsc:/kafka-connect/datagen/avro/StockQuote.avsc
 
   # https://hub.docker.com/r/confluentinc/cp-kafka-connect/tags
   kafka-connect-02:
@@ -109,7 +109,7 @@ services:
     volumes:
       - ./connectors/confluentinc-kafka-connect-datagen-0.6.0:/usr/share/java/confluentinc-kafka-connect-datagen
       - ./connectors/kafka-connect-transforms:/usr/share/java/kafka-connect-transforms
-      - ./avro/StockQuote.avsc:/kafka-connect/datagen/avro/StockQuote.avsc
+      - ./avro-model/src/main/resources/avro/StockQuote.avsc:/kafka-connect/datagen/avro/StockQuote.avsc
 
   # https://hub.docker.com/r/confluentinc/cp-kafka-connect/tags
   kafka-connect-03:
@@ -155,7 +155,7 @@ services:
     volumes:
       - ./connectors/confluentinc-kafka-connect-datagen-0.6.0:/usr/share/java/confluentinc-kafka-connect-datagen
       - ./connectors/kafka-connect-transforms:/usr/share/java/kafka-connect-transforms
-      - ./avro/StockQuote.avsc:/kafka-connect/datagen/avro/StockQuote.avsc
+      - ./avro-model/src/main/resources/avro/StockQuote.avsc:/kafka-connect/datagen/avro/StockQuote.avsc
 
   conduktor:
     depends_on:
