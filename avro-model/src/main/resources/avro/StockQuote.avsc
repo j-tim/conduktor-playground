@@ -1,5 +1,5 @@
 {
-  "namespace": "nl.jtim.spring.kafka.avro.stock.quote",
+  "namespace": "nl.jtim.conduktor.spring.kafka.avro.stock.quote",
   "type": "record",
   "name": "StockQuote",
   "version": 1,
