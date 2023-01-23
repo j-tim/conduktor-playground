@@ -64,7 +64,7 @@ services:
       TZ: $TZ
 
   conduktor:
-    image: conduktor/conduktor-platform:1.8.0
+    image: conduktor/conduktor-platform:1.9.1
     hostname: conduktor
     container_name: conduktor
     healthcheck:
@@ -100,13 +100,6 @@ services:
       LICENSE_KEY: "your-license-key-here"
     ports:
       - 80:80
-
-  confluent-cli:
-    image: confluentinc/confluent-cli
-    container_name: confluent-cli
-    command: sleep infinity
-    environment:
-      TZ: $TZ
 
 volumes:
   conduktor_data: {}
