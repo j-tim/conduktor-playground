@@ -16,7 +16,6 @@
 
 	<modules>
 		<module>avro-model</module>
-<!--		<module>spring-kafka-producer</module>-->
 		<module>spring-kafka-consumer</module>
 	</modules>
 
