@@ -1,3 +1,4 @@
 spring:
   kafka:
-    bootstrap-servers: localhost:6969
+    # Make sure to add: 127.0.0.1 conduktor-proxy to your /etc/hosts     
+    bootstrap-servers: conduktor-proxy:6969
