@@ -148,6 +148,18 @@ Down:
 docker-compose -f docker-compose.yml -f docker-compose-kafka-connect.yml -f docker-compose-conduktor-proxy.yml -f docker-compose-console-consumer-producer.yml down -v
 ```
 
+## Build the project
+
+```bash
+./mvnw clean install
+```
+
+## Run the consumer application
+
+```bash
+./mvnw spring-boot:run -pl spring-kafka-consumer
+```
+
 ## Example Repos
 
 * https://github.com/conduktor/kafka-stack-docker-compose
