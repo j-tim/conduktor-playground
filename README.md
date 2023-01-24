@@ -4,57 +4,47 @@
 
 Basic setup: [docker-compose.yml](docker-compose.yml)
 
-| Component                                    | Port  | API / UI                                 | Description                      | Documentation |
-|----------------------------------------------|-------|------------------------------------------|----------------------------------|---------------|
-| Kafka broker                                 | 9092  |                                          | Single Node Kafka Cluster        |               |
-| Conduktor Plaform                            | 80    | [Conduktor](http://localhost)            | Conduktor                        |               |
-| Confluent Schema Registry                    | 8081  | [Schema Registry](http://localhost:8081) | Schema Registry for Avro Schemas |               |
+| Component                                    | Port  | API / UI                                 | Description                      | Documentation                                                                      |
+|----------------------------------------------|-------|------------------------------------------|----------------------------------|------------------------------------------------------------------------------------|
+| Kafka broker                                 | 9092  |                                          | Single Node Kafka Cluster        | [https://kafka.apache.org/documentation/](https://kafka.apache.org/documentation/) |
+| Conduktor Plaform                            | 80    | [Conduktor](http://localhost)            | Conduktor                        | [https://docs.conduktor.io/platform/](https://docs.conduktor.io/platform/)         |
+| Confluent Schema Registry                    | 8081  | [Schema Registry](http://localhost:8081) | Schema Registry for Avro Schemas | [https://docs.confluent.io/platform/current/schema-registry/index.html](https://docs.confluent.io/platform/current/schema-registry/index.html)                                                                               |
 
 Kafka connect: [docker-compose-kafka-connect.yml](docker-compose-kafka-connect.yml)
 
-| Component                | Port  | API / UI                                            | Description                            | Documentation |
-|--------------------------|-------|-----------------------------------------------------|----------------------------------------|---------------|
-| Nginx                    | 8083  | [Nginx](http://localhost:8083)                      | Loadbalancer for Kafka connect cluster |               |
-| Kafka Connect - Worker 1 | 18083 | [Kafka Connect - Worker 1](http://localhost:18083)  | 3 worker nodes cluster                 |               |
-| Kafka Connect - Worker 2 | 28083 | [Kafka Connect - Worker 2](http://localhost:28083)  | "                                      |               |
-| Kafka Connect - Worker 3 | 38083 | [Kafka Connect - Worker 3](http://localhost:38083)  | "                                      |               |
+| Component                | Port  | API / UI                                            | Description                            | Documentation                                            |
+|--------------------------|-------|-----------------------------------------------------|----------------------------------------|----------------------------------------------------------|
+| Nginx                    | 8083  | [Nginx](http://localhost:8083)                      | Loadbalancer for Kafka connect cluster | [https://nginx.org/en/docs/](https://nginx.org/en/docs/) |
+| Kafka Connect - Worker 1 | 18083 | [Kafka Connect - Worker 1](http://localhost:18083)  | 3 worker nodes cluster                 | [https://docs.confluent.io/platform/current/connect/index.html](https://docs.confluent.io/platform/current/connect/index.html)                                                     |
+| Kafka Connect - Worker 2 | 28083 | [Kafka Connect - Worker 2](http://localhost:28083)  | "                                      | [https://docs.confluent.io/platform/current/connect/index.html](https://docs.confluent.io/platform/current/connect/index.html)                                                          |
+| Kafka Connect - Worker 3 | 38083 | [Kafka Connect - Worker 3](http://localhost:38083)  | "                                      | [https://docs.confluent.io/platform/current/connect/index.html](https://docs.confluent.io/platform/current/connect/index.html)                                                          |
 
 Conduktor Proxy: [docker-compose-conduktor-proxy.yml](docker-compose-conduktor-proxy.yml)
 
-| Component                | Port              | Browser                                      | Description                     | Documentation |
-|--------------------------|-------------------|----------------------------------------------|---------------------------------|---------------|
-| Conduktor Proxy          | 8888, 6969 - 6970 | [Conduktor Proxy API](http://localhost:8888) | Proxy in front of Kafka cluster |               |
+| Component                | Port              | Browser                                      | Description                     | Documentation                                                                        |
+|--------------------------|-------------------|----------------------------------------------|---------------------------------|--------------------------------------------------------------------------------------|
+| Conduktor Proxy          | 8888, 6969 - 6970 | [Conduktor Proxy API](http://localhost:8888) | Proxy in front of Kafka cluster | [https://docs.conduktor.io/platform/proxy](https://docs.conduktor.io/platform/proxy) |
 
 Kafka console producer / consumer [docker-compose-console-consumer-producer.yml](docker-compose-console-consumer-producer.yml)
 
 
-| Component                             | Port | Description | Documentation |
-|---------------------------------------|------|-------------|---------------|
-| Kafka broker used as console producer | none |             |               |  
-| Kafka broker used as console consumer | none |             |               |  
+| Component                             | Port | Description                                  | Documentation |
+|---------------------------------------|------|----------------------------------------------|---------------|
+| Kafka broker used as console producer | none | Container used only for the console producer | [https://developer.confluent.io/tutorials/kafka-console-consumer-producer-basics/confluent.html](https://developer.confluent.io/tutorials/kafka-console-consumer-producer-basics/confluent.html)          |  
+| Kafka broker used as console consumer | none | Container used only for the console consumer |  [https://developer.confluent.io/tutorials/kafka-console-consumer-producer-basics/confluent.html](https://developer.confluent.io/tutorials/kafka-console-consumer-producer-basics/confluent.html)          |  
 
-### Single node Kafka cluster
+### Single node Kafka cluster (including Conduktor platform)
+
+Up:
 
 ```bash
 docker-compose up -d
 ```
 
+Down:
+
 ```bash
 docker-compose down -v
-```
-
-### With Kafka Connect
-
-Up
-
-```bash
-docker-compose -f docker-compose.yml -f docker-compose-kafka-connect.yml up -d 
-```
-
-Down
-
-```bash
-docker-compose -f docker-compose.yml -f docker-compose-kafka-connect.yml down -v
 ```
 
 [Conduktor](http://localhost/admin/)
@@ -63,19 +53,29 @@ docker-compose -f docker-compose.yml -f docker-compose-kafka-connect.yml down -v
   * username: `admin@admin.io`
   * password: `admin`
 
-```
-docker-compose up -d
+### With Kafka Connect
+
+Up:
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose-kafka-connect.yml up -d 
 ```
 
-```
-docker-compose down -v
+Down:
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose-kafka-connect.yml down -v
 ```
 
 ## Kafka Connect
 
+Up:
+
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose-kafka-connect.yml up -d
 ```
+
+Down:
 
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose-kafka-connect.yml down -v

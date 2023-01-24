@@ -3,17 +3,21 @@ version: '3.9'
 services:
 
   conduktor:
+    volumes:
+      - conduktor_data:/var/conduktor
+      - type: bind
+        source: "./conduktor/platform-config-with-proxy.yaml"
+        target: /opt/conduktor/platform-config.yaml
+        read_only: true
     depends_on:
       kafka:
         condition: service_healthy
       schema-registry:
         condition: service_healthy
-      conduktor-proxy:
-        condition: service_started
 
   # https://docs.conduktor.io/platform/proxy/configuration/env-variables#proxy-environment-variables
   conduktor-proxy:
-    image: conduktor/conduktor-proxy:0.3.0-amd64
+    image: conduktor/conduktor-proxy:1.0.0-amd64
     hostname: conduktor-proxy
     container_name: conduktor-proxy
     ports:
@@ -25,3 +29,8 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: kafka:29092
       PROXY_HOST: conduktor-proxy
       SCHEMA_REGISTRY_HOST: http://schema-registry:8081
+    depends_on:
+      kafka:
+        condition: service_healthy
+      schema-registry:
+        condition: service_healthy
