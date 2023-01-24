@@ -148,6 +148,42 @@ Down:
 docker-compose -f docker-compose.yml -f docker-compose-kafka-connect.yml -f docker-compose-conduktor-proxy.yml -f docker-compose-console-consumer-producer.yml down -v
 ```
 
+Create topic:
+
+```bash
+docker exec kafka-console-producer \
+  kafka-topics \
+    --bootstrap-server conduktor-proxy:6969 \
+    --create --if-not-exists --topic conduktor-test-topic
+```
+
+List the topics:
+
+```bash
+docker-compose exec kafka-console-producer \
+  kafka-topics \
+    --bootstrap-server conduktor-proxy:6969 \
+    --list
+```
+
+Producer to the topic:
+
+```bash
+echo 'Hello World' | docker-compose exec -T kafka-console-producer \
+    kafka-console-producer  \
+        --bootstrap-server conduktor-proxy:6969 \
+        --topic conduktor-test-topic
+```
+
+Consume from the topic:
+
+```bash
+docker-compose exec kafka-console-consumer kafka-console-consumer \
+  --bootstrap-server conduktor-proxy:6969 \
+  --from-beginning \
+  --topic conduktor-test-topic
+```
+
 ## Build the project
 
 ```bash
